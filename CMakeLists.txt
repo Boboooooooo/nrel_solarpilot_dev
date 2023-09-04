@@ -28,7 +28,7 @@ if ( NOT APPLE)
 	set(CURL_DIR build_resources/libcurl_ssl_x64)
 endif()
 
-include_directories(. $ENV{WEXDIR}/include $ENV{LKDIR}/include $ENV{CORETRACEDIR} $ENV{SSCDIR}/shared $ENV{SSCDIR}/solarpilot)
+include_directories(. $ENV{WEXDIR_EX}/include $ENV{LKDIR_EX}/include $ENV{CORETRACEDIR} $ENV{SSCDIR_EX} $ENV{SSCDIR_EX}/shared $ENV{SSCDIR_EX}/solarpilot)
 
 set(SOLARPILOT_SRC
 	app/FieldPlot.cpp                         app/FieldPlot.h
@@ -118,7 +118,7 @@ if (UNIX)
 	set(wxWidgets_CONFIG_EXECUTABLE /usr/local/bin/wx-config-3)
 	find_package(wxWidgets COMPONENTS qa aui richtext html propgrid adv net stc core xml base REQUIRED)
 else()
-	set(wxWidgets_ROOT_DIR $ENV{WXMSW3})
+	set(wxWidgets_ROOT_DIR $ENV{WXMSW3_EX})
 	find_package(wxWidgets COMPONENTS qa webview aui richtext html propgrid adv net stc core xml base scintilla REQUIRED)
 endif()
 
@@ -188,25 +188,25 @@ else()
 	unset(SPCORE_LIB CACHE)
 	find_library( LK_LIB
 		NAMES lk.a lk.lib
-		PATHS $ENV{LK_LIB} $ENV{LKDIR}/build $ENV{LKDIR}/build/Release)
+		PATHS $ENV{LK_LIB} $ENV{LKDIR_EX}/build $ENV{LKDIR_EX}/build/Release)
 	find_library( WEX_LIB
 		NAMES wex.a wex.lib
-		PATHS $ENV{WEX_LIB} $ENV{WEXDIR}/build $ENV{WEXDIR}/build/Release)
+		PATHS $ENV{WEX_LIB} $ENV{WEXDIR_EX}/build $ENV{WEXDIR_EX}/build/Release)
 	find_library( LPSOLVE_LIB
 		NAMES lpsolve.a lpsolve.lib
-		PATHS $ENV{LPSOLVE_LIB} $ENV{SSCDIR}/build/lpsolve $ENV{SSCDIR}/build/lpsolve/Release)
+		PATHS $ENV{LPSOLVE_LIB} $ENV{SSCDIR_EX}/build/lpsolve $ENV{SSCDIR_EX}/build/lpsolve/Release)
 	find_library( NLOPT_LIB
 		NAMES nlopt.a nlopt.lib
-		PATHS $ENV{NLOPT_LIB} $ENV{SSCDIR}/build/nlopt $ENV{SSCDIR}/build/nlopt/Release)
+		PATHS $ENV{NLOPT_LIB} $ENV{SSCDIR_EX}/build/nlopt $ENV{SSCDIR_EX}/build/nlopt/Release)
 	find_library( SHARED_LIB
 		NAMES shared.a shared.lib
-		PATHS $ENV{SHARED_LIB} $ENV{SSCDIR}/build/shared $ENV{SSCDIR}/build/shared/Release)
+		PATHS $ENV{SHARED_LIB} $ENV{SSCDIR_EX}/build/shared $ENV{SSCDIR_EX}/build/shared/Release)
 	find_library( CORETRACE_LIB
 		NAMES coretrace.a coretrace.lib
 		PATHS $ENV{CORETRACE_LIB} $ENV{CORETRACEDIR}/build $ENV{CORETRACEDIR}/build/Release)
 	find_library( SPCORE_LIB
 		NAMES solarpilot_core.a solarpilot_core.lib
-		PATHS $ENV{SPCORE_LIB} $ENV{SSCDIR}/build/solarpilot $ENV{SSCDIR}/build/solarpilot/Release) 
+		PATHS $ENV{SPCORE_LIB} $ENV{SSCDIR_EX}/build/solarpilot $ENV{SSCDIR_EX}/build/solarpilot/Release) 
 
 	target_link_libraries(SolarPILOT optimized ${SPCORE_LIB} optimized ${CORETRACE_LIB} optimized ${SHARED_LIB} optimized ${NLOPT_LIB} optimized ${LPSOLVE_LIB} optimized ${WEX_LIB} optimized ${LK_LIB})
 	
@@ -220,25 +220,25 @@ else()
 		unset(SPCORE_LIB CACHE)
 		find_library( LK_LIB
 			NAMES lkd.a lkd.lib
-			PATHS $ENV{LK_LIB} $ENV{LKDIR}/build $ENV{LKDIR}/build/Debug)
+			PATHS $ENV{LK_LIB} $ENV{LKDIR_EX}/build $ENV{LKDIR_EX}/build/Debug)
 		find_library( WEX_LIB
 			NAMES wexd.a wexd.lib
-			PATHS $ENV{WEX_LIB} $ENV{WEXDIR}/build $ENV{WEXDIR}/build/Debug)
+			PATHS $ENV{WEX_LIB} $ENV{WEXDIR_EX}/build $ENV{WEXDIR_EX}/build/Debug)
 		find_library( LPSOLVE_LIB
 			NAMES lpsolved.a lpsolved.lib
-			PATHS $ENV{LPSOLVE_LIB} $ENV{SSCDIR}/build/lpsolve $ENV{SSCDIR}/build/lpsolve/Debug)
+			PATHS $ENV{LPSOLVE_LIB} $ENV{SSCDIR_EX}/build/lpsolve $ENV{SSCDIR_EX}/build/lpsolve/Debug)
 		find_library( NLOPT_LIB
 			NAMES nloptd.a nloptd.lib
-			PATHS $ENV{NLOPT_LIB} $ENV{SSCDIR}/build/nlopt $ENV{SSCDIR}/build/nlopt/Debug)
+			PATHS $ENV{NLOPT_LIB} $ENV{SSCDIR_EX}/build/nlopt $ENV{SSCDIR_EX}/build/nlopt/Debug)
 		find_library( SHARED_LIB
 			NAMES sharedd.a sharedd.lib
-			PATHS $ENV{SHARED_LIB} $ENV{SSCDIR}/build/shared $ENV{SSCDIR}/build/shared/Debug)
+			PATHS $ENV{SHARED_LIB} $ENV{SSCDIR_EX}/build/shared $ENV{SSCDIR_EX}/build/shared/Debug)
 		find_library( CORETRACE_LIB
 			NAMES coretraced.a coretraced.lib
 			PATHS $ENV{CORETRACE_LIB} $ENV{CORETRACEDIR}/build $ENV{CORETRACEDIR}/build/Debug)
 		find_library( SPCORE_LIB
 			NAMES solarpilot_cored.a solarpilot_cored.lib
-			PATHS $ENV{SPCORE_LIB} $ENV{SSCDIR}/build/solarpilot $ENV{SSCDIR}/build/solarpilot/Debug) 
+			PATHS $ENV{SPCORE_LIB} $ENV{SSCDIR_EX}/build/solarpilot $ENV{SSCDIR_EX}/build/solarpilot/Debug) 
 
 		target_link_libraries(SolarPILOT debug ${SPCORE_LIB} debug ${CORETRACE_LIB} debug ${SHARED_LIB} debug ${NLOPT_LIB} debug ${LPSOLVE_LIB} debug ${WEX_LIB} debug ${LK_LIB})
 	
@@ -256,7 +256,7 @@ if (UNIX)
 elseif (MSVC)
 	find_library( CURL_LIB
 			NAMES libcurl.lib
-			PATHS $ENV{WEXDIR}/build_resources/libcurl_ssl_x64/lib)
+			PATHS $ENV{WEXDIR_EX}/build_resources/libcurl_ssl_x64/lib)
 	target_link_libraries(SolarPILOT ${CURL_LIB})
 	target_link_libraries(SolarPILOT Winhttp)
 endif()
@@ -286,7 +286,7 @@ if (MSVC)
 		TARGET SolarPILOT
 		POST_BUILD
 		COMMAND ${CMAKE_COMMAND}
-		ARGS -E copy $ENV{WEXDIR}/build_resources/libcurl_ssl_x64/bin/${file_i} ${SOLARPILOT_DIR}
+		ARGS -E copy $ENV{WEXDIR_EX}/build_resources/libcurl_ssl_x64/bin/${file_i} ${SOLARPILOT_DIR}
 	)
 	endforeach( file_i )
 endif()
