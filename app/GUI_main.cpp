@@ -483,7 +483,7 @@ SPFrame::SPFrame(wxWindow* parent, int id, const wxString& title, const wxPoint&
     _simimages[3].LoadFile(impath+"Cancel.png", wxBITMAP_TYPE_PNG);
     
     //display license on first run
-    wxTextFile runinit(_local_dir.GetPath(true) + "runinit");
+    wxTextFile runinit(_local_dir.GetPathWithSep() + "runinit");
     bool showlic = false;
     if(runinit.Exists() )
     {
@@ -507,7 +507,6 @@ SPFrame::SPFrame(wxWindow* parent, int id, const wxString& title, const wxPoint&
         runinit.AddLine(_software_version);
         runinit.Write();
     }
-    
 
     //Declare the page names
     pageNames.climate = "Climate";
