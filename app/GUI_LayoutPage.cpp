@@ -172,9 +172,15 @@ void SPFrame::CreateLayoutPage(wxScrolledWindow *parent)
     wxStaticBoxSizer *sbs_2 = new wxStaticBoxSizer(sb_2, wxVERTICAL);
     InputControl
         *accept_min = new InputControl(parent, wxID_ANY,  _variables.sf.accept_min),
-        *accept_max = new InputControl(parent, wxID_ANY,  _variables.sf.accept_max);
+        *accept_max = new InputControl(parent, wxID_ANY,  _variables.sf.accept_max),
+        *is_az_starting = new InputControl(parent, wxID_ANY, _variables.sf.is_az_starting),
+        *az_starting = new InputControl(parent, wxID_ANY, _variables.sf.az_starting);
     sbs_2->Add(accept_min);
     sbs_2->Add(accept_max);
+    sbs_2->Add(is_az_starting);
+    sbs_2->Add(az_starting);
+
+    is_az_starting->setDisabledSiblings("false", az_starting);
 
     OutputControl 
         *radmin_m = new OutputControl(parent, wxID_ANY, _variables.land.radmin_m), 
@@ -393,7 +399,7 @@ void SPFrame::CreateLayoutPage(wxScrolledWindow *parent)
     parent->SetSizer(main_sizer);
     
     //**********Add all of the inputs and outputs to the map*************
-    InputControl *inputs[] = {dni_des, q_des, tht, layout_method, az_spacing, spacing_reset,  rad_spacing_method, accept_min, accept_max, is_bounds_scaled, 
+    InputControl *inputs[] = {dni_des, q_des, tht, layout_method, az_spacing, spacing_reset,  rad_spacing_method, accept_min, accept_max, az_starting, is_az_starting, is_bounds_scaled, 
         max_scaled_rad, min_scaled_rad, is_bounds_fixed, max_fixed_rad, min_fixed_rad, is_bounds_array, sun_loc_des, is_exclusions_relative,
         sun_el_des_user, sun_az_des_user, row_spacing_x, row_spacing_y, xy_field_shape, xy_rect_aspect, is_prox_filter, 
         prox_filter_frac, is_opt_zoning, max_zone_size_rad, max_zone_size_az, min_zone_size_rad, min_zone_size_az, 
