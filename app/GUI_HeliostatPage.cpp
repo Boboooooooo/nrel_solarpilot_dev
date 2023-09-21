@@ -220,11 +220,17 @@ void SPFrame::CreateHeliostatPage(wxScrolledWindow *parent, int id)
     InputControl *width = new InputControl(parent, wxID_ANY,  _variables.hels[id].width);
     InputControl *height = new InputControl(parent, wxID_ANY,  _variables.hels[id].height);
     OutputControl *r_collision = new OutputControl(parent, wxID_ANY, _variables.hels[id].r_collision, "%.3f");
+    InputControl *is_custom_collision = new InputControl(parent, wxID_ANY, _variables.hels[id].is_cumstom_collision);
+    InputControl *r_custom_collision = new InputControl(parent, wxID_ANY, _variables.hels[id].r_custom_collision);
     
     wxBoxSizer *geom_panel_rect_s = new wxBoxSizer(wxVERTICAL);
     geom_panel_rect_s->Add(width, 0, 0, 0);
     geom_panel_rect_s->Add(height, 0, 0, 0);
     geom_panel_rect_s->Add(r_collision, 0, 0, 0);
+    geom_panel_rect_s->Add(is_custom_collision, 0, 0, 0);
+    geom_panel_rect_s->Add(r_custom_collision, 0, 0, 0);
+
+    is_custom_collision->setDisabledSiblings("false", r_custom_collision);
 
     //-----Canting group for Rectangular ONLY--
     /* 
@@ -479,7 +485,7 @@ void SPFrame::CreateHeliostatPage(wxScrolledWindow *parent, int id)
 
 
     //Add all of the input items to the input control list
-    InputControl* inputs[] = {width, height, is_faceted, n_cant_x, n_cant_y, cant_method, cant_rad_scaled, 
+    InputControl* inputs[] = {width, height, is_custom_collision, r_custom_collision, is_faceted, n_cant_x, n_cant_y, cant_method, cant_rad_scaled,
                               is_cant_rad_scaled, cant_day, cant_hour, cant_vect_i, cant_vect_j, cant_vect_k, cant_vect_scale,
                               is_cant_vect_slant, focus_method, is_focal_equal, is_xfocus, is_yfocus, x_focal_length, y_focal_length, 
                               err_elevation, err_azimuth, err_surface_x, err_surface_y, err_reflect_x, err_reflect_y, st_err_type, reflect_ratio,
