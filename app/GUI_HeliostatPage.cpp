@@ -220,7 +220,7 @@ void SPFrame::CreateHeliostatPage(wxScrolledWindow *parent, int id)
     InputControl *width = new InputControl(parent, wxID_ANY,  _variables.hels[id].width);
     InputControl *height = new InputControl(parent, wxID_ANY,  _variables.hels[id].height);
     OutputControl *r_collision = new OutputControl(parent, wxID_ANY, _variables.hels[id].r_collision, "%.3f");
-    InputControl *is_custom_collision = new InputControl(parent, wxID_ANY, _variables.hels[id].is_cumstom_collision);
+    InputControl *is_custom_collision = new InputControl(parent, wxID_ANY, _variables.hels[id].is_custom_collision);
     InputControl *r_custom_collision = new InputControl(parent, wxID_ANY, _variables.hels[id].r_custom_collision);
     
     wxBoxSizer *geom_panel_rect_s = new wxBoxSizer(wxVERTICAL);
