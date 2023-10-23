@@ -216,11 +216,13 @@ void SPFrame::CreateLayoutPage(wxScrolledWindow *parent)
     InputControl
         *is_bounds_array = new InputControl(parent, wxID_ANY,  _variables.land.is_bounds_array),
         *is_exclusions_relative = new InputControl(parent, wxID_ANY, _variables.land.is_exclusions_relative),
+        *circular_bounds_rad = new InputControl(parent, wxID_ANY, _variables.land.circular_bounds_rad),
         *tower_offset_x = new InputControl(parent, wxID_ANY, _variables.land.tower_offset_x),
         *tower_offset_y = new InputControl(parent, wxID_ANY, _variables.land.tower_offset_y);
 
     sbs_2->Add(is_bounds_array);
     sbs_2->Add(is_exclusions_relative);
+    sbs_2->Add(circular_bounds_rad);
     sbs_2->Add( tower_offset_x );
     sbs_2->Add( tower_offset_y );
     
@@ -255,10 +257,9 @@ void SPFrame::CreateLayoutPage(wxScrolledWindow *parent)
     
     //disable the controls when "is_bounds_array" is false
     {
-    wxWindow* dsibs[] = {b_import_1, b_export_1, _bounds_ct, bounds_ct_lab, _bounds_grid, tower_offset_x, tower_offset_y, is_exclusions_relative};
-    is_bounds_array->addDisabledSiblings("false", 8, dsibs);
+    wxWindow* dsibs[] = {b_import_1, b_export_1, _bounds_ct, bounds_ct_lab, _bounds_grid, tower_offset_x, tower_offset_y, is_exclusions_relative, circular_bounds_rad};
+    is_bounds_array->addDisabledSiblings("false", 9, dsibs);
     }
-
 
     sbs_2->Add(bounds_sizer, 0, wxEXPAND, 0);
     //Bind the buttons to their events
@@ -400,7 +401,7 @@ void SPFrame::CreateLayoutPage(wxScrolledWindow *parent)
     
     //**********Add all of the inputs and outputs to the map*************
     InputControl *inputs[] = {dni_des, q_des, tht, layout_method, az_spacing, spacing_reset,  rad_spacing_method, accept_min, accept_max, az_starting, is_az_starting, is_bounds_scaled, 
-        max_scaled_rad, min_scaled_rad, is_bounds_fixed, max_fixed_rad, min_fixed_rad, is_bounds_array, sun_loc_des, is_exclusions_relative,
+        max_scaled_rad, min_scaled_rad, is_bounds_fixed, max_fixed_rad, min_fixed_rad, is_bounds_array, sun_loc_des, is_exclusions_relative,circular_bounds_rad,
         sun_el_des_user, sun_az_des_user, row_spacing_x, row_spacing_y, xy_field_shape, xy_rect_aspect, is_prox_filter, 
         prox_filter_frac, is_opt_zoning, max_zone_size_rad, max_zone_size_az, min_zone_size_rad, min_zone_size_az, 
         zone_div_tol, trans_limit_fact, is_sliprow_skipped, slip_plane_blocking, tower_offset_x, tower_offset_y, interaction_limit, NULL};
